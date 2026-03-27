@@ -1,6 +1,7 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 const COURSE_PURCHASE_API = "http://localhost:8080/api/v1/purchase";
+// const COURSE_PURCHASE_API = "https://158nw37h-8080.inc1.devtunnels.ms/api/v1/purchase";
 
 export const purchaseApi = createApi({
   reducerPath: "purchaseApi",
@@ -36,3 +37,7 @@ export const {
   useGetCourseDetailWithStatusQuery,
   useGetPurchasedCoursesQuery,
 } = purchaseApi;
+
+
+// https://www.loom.com/share/3c94514373644d3bbe6e77d39abb66a7?sid=cfd701e0-cad2-45bc-8162-067f2a6e32d4
+// https://www.loom.com/share/3c94514373644d3bbe6e77d39abb66a7

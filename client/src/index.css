@@ -11,6 +11,10 @@ html,body
 {
   background-color: var(--secondary-color);
 }
+.dark{
+  background-color : var(--secondary-color);
+}
+
 @layer base {
   :root {
     --background: 0 0% 100%;

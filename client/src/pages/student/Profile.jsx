@@ -173,7 +173,7 @@ const Profile = () => {
           <div>
             <h1 className="font-medium text-lg">Courses you're created</h1>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 my-5">
-              {!course.courses ? (
+              {!course?.courses ? (
                 <h1>You haven't created yet</h1>
               ) : (
                 course?.courses && course?.courses.map((course) => (
@@ -186,7 +186,7 @@ const Profile = () => {
           <div>
             <h1 className="font-medium text-lg">Courses you're enrolled in</h1>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 my-5">
-              {!data.courses ? (
+              {!data?.courses ? (
                 <h1>You haven't enrolled yet</h1>
               ) : (
                 data?.courses && data?.courses.map((course) => (

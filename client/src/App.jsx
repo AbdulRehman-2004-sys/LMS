@@ -1,5 +1,4 @@
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import "./App.css";
+import { BrowserRouter, createBrowserRouter, Route, RouterProvider, Routes } from "react-router-dom";
 import Login from "./pages/Login";
 import HeroSection from "./pages/student/HeroSection";
 import MainLayout from "./layout/MainLayout";
@@ -24,6 +23,7 @@ import {
 import PurchaseCourseProtectedRoute from "./components/PurchaseCourseProtectedRoute";
 import { ThemeProvider } from "./components/ThemeProvider";
 import Scene from "./pages/student/canvas3D/Scene";
+import Navbar from "./components/Navbar";
 
 const appRouter = createBrowserRouter([
   {
@@ -148,3 +148,4 @@ function App() {
 }
 
 export default App;
+

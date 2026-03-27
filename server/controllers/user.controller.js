@@ -71,6 +71,7 @@ export const login = async (req,res) => {
         })
     }
 }
+
 export const logout = async (_,res) => {
     try {
         return res.status(200).cookie("token", "", {maxAge:0}).json({

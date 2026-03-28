@@ -100,7 +100,7 @@ const Navbar = () => {
       {/* Mobile device  */}
       <div className="flex md:hidden items-center justify-between px-4 h-full">
         <h1 className="font-extrabold text-xl text-white">ACADE<i className="text-[var(--primary-color)]">MIA</i></h1>
-        <MobileNavbar user={user} />
+        <MobileNavbar user={user} logoutHandler={logoutHandler} />
       </div>
     </div>
   );
@@ -108,7 +108,7 @@ const Navbar = () => {
 
 export default Navbar;
 
-const MobileNavbar = ({ user }) => {
+const MobileNavbar = ({ user, logoutHandler }) => {
   const navigate = useNavigate();
 
   return (
@@ -131,7 +131,7 @@ const MobileNavbar = ({ user }) => {
         <nav className="flex flex-col space-y-4">
          {user?.role === "student" && <Link to="/my-learning">My Learning</Link>}
           <Link to="/profile">Edit Profile</Link>
-          {user && <p>Log out</p>}
+          {user && <p onClick={logoutHandler} className="cursor-pointer">Log out</p>}
         </nav>
         {user?.role === "instructor" && (
           <SheetFooter>

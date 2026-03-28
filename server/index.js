@@ -12,7 +12,14 @@ import courseProgressRoute from "./routes/courseProgress.route.js";
 dotenv.config({});
 
 // call database connection here
-connectDB();
+connectDB().then(async () => {
+  const { User } = await import("./models/user.model.js");
+  await User.updateMany(
+    { email: { $ne: "instructor@gmail.com" } },
+    { $set: { role: "student" } }
+  );
+  console.log("Migration: All users (except instructor) reset to student role.");
+});
 const app = express();
 app.set("trust proxy", 1);
 

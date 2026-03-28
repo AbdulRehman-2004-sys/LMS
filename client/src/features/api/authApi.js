@@ -7,7 +7,14 @@ export const authApi = createApi({
     reducerPath:"authApi",
     baseQuery:fetchBaseQuery({
         baseUrl:USER_API,
-        credentials:'include'
+        credentials:'include',
+        prepareHeaders: (headers, { getState }) => {
+            const token = getState().auth.token;
+            if (token) {
+                headers.set("Authorization", `Bearer ${token}`);
+            }
+            return headers;
+        },
     }),
     endpoints: (builder) => ({
         registerUser: builder.mutation({
@@ -26,7 +33,10 @@ export const authApi = createApi({
             async onQueryStarted(_, {queryFulfilled, dispatch}) {
                 try {
                     const result = await queryFulfilled;
-                    dispatch(userLoggedIn({user:result.data.user}));
+                    dispatch(userLoggedIn({
+                        user:result.data.user,
+                        token:result.data.token
+                    }));
                 } catch (error) {
                     console.log(error);
                 }
@@ -53,7 +63,10 @@ export const authApi = createApi({
             async onQueryStarted(_, {queryFulfilled, dispatch}) {
                 try {
                     const result = await queryFulfilled;
-                    dispatch(userLoggedIn({user:result.data.user}));
+                    dispatch(userLoggedIn({
+                        user:result.data.user,
+                        token:result.data.token || localStorage.getItem("token")
+                    }));
                 } catch (error) {
                     console.log(error);
                 }

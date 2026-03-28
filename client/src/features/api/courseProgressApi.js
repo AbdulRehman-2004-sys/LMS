@@ -8,6 +8,13 @@ export const courseProgressApi = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl: COURSE_PROGRESS_API,
     credentials: "include",
+    prepareHeaders: (headers, { getState }) => {
+        const token = getState().auth.token;
+        if (token) {
+            headers.set("Authorization", `Bearer ${token}`);
+        }
+        return headers;
+    },
   }),
   endpoints: (builder) => ({
     getCourseProgress: builder.query({

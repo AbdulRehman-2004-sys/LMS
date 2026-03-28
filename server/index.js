@@ -14,6 +14,7 @@ dotenv.config({});
 // call database connection here
 connectDB();
 const app = express();
+app.set("trust proxy", 1);
 
 const PORT = process.env.PORT || 3000;
 
@@ -26,6 +27,7 @@ app.use(cors({
   origin: [
     "http://localhost:5173",
     "https://lms-xi-smoky.vercel.app",
+    "https://lms-xi-smoky.vercel.app/",
   ],
   credentials: true,
   methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],

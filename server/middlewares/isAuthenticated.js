@@ -6,6 +6,7 @@ const isAuthenticated = async (req, res, next) => {
   try {
     const token = req.cookies.token;
     if (!token) {
+      console.log("No token found in cookies");
       return res.status(401).json({
         success: false,
         message: "User not authenticated",
@@ -17,6 +18,7 @@ const isAuthenticated = async (req, res, next) => {
     req.id = decoded.userId;
     next();
   } catch (error) {
+    console.log("Auth Error:", error.message);
     return res.status(401).json({
       success: false,
       message: "Invalid or expired token",

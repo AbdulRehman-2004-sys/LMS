@@ -31,6 +31,7 @@ const Scene = () => {
   const [one, setOne] = useState(false);
   const [two, setTwo] = useState(false);
   const [three, setThree] = useState(false);
+  const navigate = useNavigate();
 
   // Media queries
   const isMobile = useMediaQuery({ maxWidth: 767 });
@@ -69,9 +70,9 @@ const Scene = () => {
         <group position={isMobile ? [8, 9, 10] : [0, 9, 10]}>
           <Html center>
             <div className="flex flex-col justify-center items-center gap-2">
-              <a href='login'>
+              <div onClick={() => navigate("/login")}>
                 <div className={`${btnClass} ${one ? 'block' : 'hidden'}`}>Login</div>
-              </a>
+              </div>
               <div onClick={() => handleClick(1)} className={pingBall}>1</div>
             </div>
           </Html>
@@ -81,9 +82,9 @@ const Scene = () => {
         <group position={[15, 10, -15]}>
           <Html center>
             <div className="flex flex-col justify-center items-center gap-2">
-              <a href='profile'>
+              <div onClick={() => navigate("/profile")}>
                 <div className={`${btnClass} ${two ? 'block' : 'hidden'}`}>Profile</div>
-              </a>
+              </div>
               <div onClick={() => handleClick(2)} className={pingBall}>2</div>
             </div>
           </Html>
@@ -93,11 +94,11 @@ const Scene = () => {
         <group position={[-10, 12, -17]}>
           <Html center>
             <div className="flex flex-col justify-center items-center gap-2">
-              <a href='landing'>
+              <div onClick={() => navigate("/landing")}>
                 <div className={`${btnClass} ${three ? 'block' : 'hidden'}`}>
                  Courses
                 </div>
-              </a>
+              </div>
               <div onClick={() => handleClick(3)} className={pingBall}>3</div>
             </div>
           </Html>

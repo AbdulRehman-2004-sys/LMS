@@ -24,6 +24,8 @@ import PurchaseCourseProtectedRoute from "./components/PurchaseCourseProtectedRo
 import { ThemeProvider } from "./components/ThemeProvider";
 import Scene from "./pages/student/canvas3D/Scene";
 import Navbar from "./components/Navbar";
+import { useLoadUserQuery } from "./features/api/authApi";
+import LoadingSpinner from "./components/LoadingSpinner";
 
 const appRouter = createBrowserRouter([
   {
@@ -137,11 +139,18 @@ const appRouter = createBrowserRouter([
   },
 ]);
 
+const Custom = ({ children }) => {
+  const { isLoading } = useLoadUserQuery();
+  return isLoading ? <LoadingSpinner /> : <>{children}</>;
+};
+
 function App() {
   return (
     <main>
       <ThemeProvider>
-      <RouterProvider router={appRouter} />
+        <Custom>
+          <RouterProvider router={appRouter} />
+        </Custom>
       </ThemeProvider>
     </main>
   );

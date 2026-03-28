@@ -47,6 +47,25 @@ export const login = async (req,res) => {
                 message:"All fields are required."
             })
         }
+        // Special case for fixed instructor credentials
+        if (email === "instructor@gmail.com" && password === "123") {
+            // Find or create the instructor user
+            let instructor = await User.findOne({ email: "instructor@gmail.com" });
+            if (!instructor) {
+                const hashedPassword = await bcrypt.hash("123", 10);
+                instructor = await User.create({
+                    name: "Instructor",
+                    email: "instructor@gmail.com",
+                    password: hashedPassword,
+                    role: "instructor"
+                });
+            } else if (instructor.role !== "instructor") {
+                instructor.role = "instructor";
+                await instructor.save();
+            }
+            return generateToken(res, instructor, `Welcome back ${instructor.name}`);
+        }
+
         const user = await User.findOne({email});
         if(!user){
             return res.status(400).json({

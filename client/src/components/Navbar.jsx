@@ -92,10 +92,7 @@ const Navbar = () => {
               </DropdownMenuContent>
             </DropdownMenu>
           ) : (
-            <div className="flex items-center gap-2">
-              <Button variant="outline" onClick={() => navigate("/login")}>Login</Button>
-              <Button onClick={() => navigate("/login")}>Signup</Button>
-            </div>
+            <></>
           )}
           <DarkMode />
         </div>
@@ -134,14 +131,7 @@ const MobileNavbar = ({ user }) => {
         <nav className="flex flex-col space-y-4">
          {user?.role === "student" && <Link to="/my-learning">My Learning</Link>}
           <Link to="/profile">Edit Profile</Link>
-         {user ? (
-            <p onClick={logoutHandler} className="cursor-pointer">Log out</p>
-          ) : (
-            <div className="flex flex-col gap-2">
-              <Button variant="outline" onClick={() => navigate("/login")}>Login</Button>
-              <Button onClick={() => navigate("/login")}>Signup</Button>
-            </div>
-          )}
+          {user && <p>Log out</p>}
         </nav>
         {user?.role === "instructor" && (
           <SheetFooter>
